@@ -1,5 +1,5 @@
 {
-  "name": "bootstrap-styled",
+  "name": "bt-styled",
   "version": "2.7.2",
   "description": "Bootstrap Styled is a front-end ecosystem for React made with Bootstrap 4 philosophy, using the power of css-in-js thanks to styled-components.",
   "main": "lib/index.js",
@@ -17,15 +17,15 @@
     "prebuild": "npm run build:clean",
     "build": "npm run build:lib && npm run build:dist",
     "prebuild:lib": "rimraf lib/*",
-    "build:lib": "BABEL_ENV=production babel --out-dir lib src --copy-files",
+    "build:lib": "cross-env BABEL_ENV=production babel --out-dir lib src --copy-files",
     "prebuild:dist": "rimraf dist/*",
     "build:clean": "rimraf lib/* dist/*",
     "build:dist": "rollup -c && rollup -c --environment PRODUCTION",
     "build:readme": "toctoc README.md -w",
     "build:dist:watch": "rollup -c --watch",
     "build:lib:watch": "npm run build:lib -- --watch",
-    "test": "npm run lint && npm run test:web",
-    "test:web": "NODE_ENV=test jest --coverage",
+    "test": "npm run test:web",
+    "test:web": "cross-env NODE_ENV=test jest --coverage",
     "test:clean": "rimraf ./coverage",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src",
@@ -95,6 +95,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-react-hmre": "^1.1.1",
+    "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.0",
@@ -173,10 +174,6 @@
       "git add"
     ]
   },
-  "pre-commit": [
-    "build:readme",
-    "lint-staged"
-  ],
   "dependencies": {
     "@bootstrap-styled/color": "^1.0.9",
     "@bootstrap-styled/css-utils": "^1.4.0",
